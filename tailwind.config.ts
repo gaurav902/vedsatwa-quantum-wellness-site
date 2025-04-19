@@ -52,6 +52,17 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+                // Ayurvedic theme colors
+                ayurveda: {
+                    saffron: '#FF9933',
+                    sandalwood: '#D2B48C',
+                    forest: '#2A5934',
+                    gold: '#FFD700',
+                    cream: '#FFFAF0',
+                    leafGreen: '#4CAF50',
+                    earthBrown: '#8B4513',
+                    riverBlue: '#6CA0DC',
+                },
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +95,49 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+                'float': {
+                    '0%, 100%': {
+                        transform: 'translateY(0)'
+                    },
+                    '50%': {
+                        transform: 'translateY(-20px)'
+                    }
+                },
+                'spin': {
+                    'from': {
+                        transform: 'rotate(0deg)'
+                    },
+                    'to': {
+                        transform: 'rotate(360deg)'
+                    }
+                },
+                'fade-in': {
+                    'from': {
+                        opacity: '0'
+                    },
+                    'to': {
+                        opacity: '1'
+                    }
+                },
+                'slide-up': {
+                    'from': {
+                        opacity: '0',
+                        transform: 'translateY(20px)'
+                    },
+                    'to': {
+                        opacity: '1',
+                        transform: 'translateY(0)'
+                    }
+                }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+                'float': 'float 6s ease-in-out infinite',
+                'spin-slow': 'spin 20s linear infinite',
+                'fade-in': 'fade-in 1s ease-out forwards',
+                'slide-up': 'slide-up 1s ease-out forwards'
 			}
 		}
 	},
