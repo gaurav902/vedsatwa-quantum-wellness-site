@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { HeroSection } from "@/components/sections/hero-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { LocationSection } from "@/components/sections/location-section";
@@ -9,7 +9,6 @@ import { WhatsappFloat } from "@/components/whatsapp-float";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const testimonialRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Simulate content loading
@@ -19,8 +18,6 @@ const Index = () => {
     
     return () => clearTimeout(timer);
   }, []);
-
-  // Removed the automatic scrolling to testimonials useEffect
 
   if (isLoading) {
     return (
@@ -43,9 +40,7 @@ const Index = () => {
       <HeroSection />
       <AboutSection />
       <LocationSection />
-      <div ref={testimonialRef}>
-        <TestimonialSection />
-      </div>
+      <TestimonialSection />
       <FooterSection />
       <WhatsappFloat />
     </div>

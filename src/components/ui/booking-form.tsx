@@ -5,6 +5,8 @@ import { Input } from "./input";
 import { Label } from "./label";
 import { Textarea } from "./textarea";
 import { X } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 interface BookingFormProps {
   onClose: () => void;
@@ -17,13 +19,34 @@ export function BookingForm({ onClose }: BookingFormProps) {
     phone: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-    // You would typically send this data to a server
-    onClose();
+    setIsSubmitting(true);
+
+    try {
+      // Call the Supabase Edge Function to submit the booking and send email
+      const { data, error } = await supabase.functions.invoke('submit-booking', {
+        body: formData,
+      });
+
+      if (error) {
+        throw new Error(error.message || "Failed to submit booking");
+      }
+
+      // Show success message
+      toast.success("Booking submitted successfully! We'll contact you soon.");
+      
+      // Close the form after success
+      onClose();
+      
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error(error instanceof Error ? error.message : "Failed to submit booking. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -46,6 +69,7 @@ export function BookingForm({ onClose }: BookingFormProps) {
         <button
           onClick={onClose}
           className="absolute right-4 top-4 text-foreground/80 hover:text-foreground"
+          disabled={isSubmitting}
         >
           <X size={24} />
         </button>
@@ -63,6 +87,7 @@ export function BookingForm({ onClose }: BookingFormProps) {
               onChange={handleChange}
               required
               className="bg-white/50"
+              disabled={isSubmitting}
             />
           </div>
           <div className="space-y-2">
@@ -76,6 +101,7 @@ export function BookingForm({ onClose }: BookingFormProps) {
               onChange={handleChange}
               required
               className="bg-white/50"
+              disabled={isSubmitting}
             />
           </div>
           <div className="space-y-2">
@@ -88,6 +114,7 @@ export function BookingForm({ onClose }: BookingFormProps) {
               onChange={handleChange}
               required
               className="bg-white/50"
+              disabled={isSubmitting}
             />
           </div>
           <div className="space-y-2">
@@ -99,13 +126,15 @@ export function BookingForm({ onClose }: BookingFormProps) {
               value={formData.message}
               onChange={handleChange}
               className="bg-white/50 min-h-[100px]"
+              disabled={isSubmitting}
             />
           </div>
           <Button
             type="submit"
             className="w-full ayurveda-btn mt-6"
+            disabled={isSubmitting}
           >
-            Secure Your Spot Now
+            {isSubmitting ? "Submitting..." : "Secure Your Spot Now"}
           </Button>
         </form>
       </div>
