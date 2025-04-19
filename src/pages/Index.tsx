@@ -20,19 +20,7 @@ const Index = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    // Scroll to testimonials after content loads with a slight delay for smooth transition
-    if (!isLoading) {
-      const scrollTimer = setTimeout(() => {
-        testimonialRef.current?.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }, 500); // Delay after loading is complete
-
-      return () => clearTimeout(scrollTimer);
-    }
-  }, [isLoading]);
+  // Removed the automatic scrolling to testimonials useEffect
 
   if (isLoading) {
     return (
