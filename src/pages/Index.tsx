@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { HeroSection } from "@/components/sections/hero-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { LocationSection } from "@/components/sections/location-section";
@@ -9,6 +9,7 @@ import { WhatsappFloat } from "@/components/whatsapp-float";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const testimonialRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Simulate content loading
@@ -18,6 +19,20 @@ const Index = () => {
     
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    // Scroll to testimonials after content loads with a slight delay for smooth transition
+    if (!isLoading) {
+      const scrollTimer = setTimeout(() => {
+        testimonialRef.current?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 500); // Delay after loading is complete
+
+      return () => clearTimeout(scrollTimer);
+    }
+  }, [isLoading]);
 
   if (isLoading) {
     return (
@@ -40,7 +55,9 @@ const Index = () => {
       <HeroSection />
       <AboutSection />
       <LocationSection />
-      <TestimonialSection />
+      <div ref={testimonialRef}>
+        <TestimonialSection />
+      </div>
       <FooterSection />
       <WhatsappFloat />
     </div>
