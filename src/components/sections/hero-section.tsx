@@ -4,7 +4,6 @@ import { ChakraIcon } from "@/components/ui/chakra-icon";
 import { BookingForm } from "@/components/ui/booking-form";
 import { FloatingLeaf } from "@/components/ui/floating-leaf";
 import { ArrowDown } from "lucide-react";
-import { Timer } from "@/components/ui/timer";
 
 export function HeroSection() {
   const [showBookingForm, setShowBookingForm] = useState(false);
@@ -30,12 +29,12 @@ export function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-3/5 text-center lg:text-left">
             <img 
-              src="/lovable-uploads/c091ae93-da0a-4331-987e-37e879f93d36.png"
+              src="/lovable-uploads/vedsatwa.png"
               alt="Vedsatwa Logo"
               className="w-48 mb-4 mx-auto lg:mx-0"
             />
             <div className="inline-flex items-center gap-2 mb-6 bg-white/30 px-4 py-2 rounded-full backdrop-blur-sm">
-              <ChakraIcon size={20} className="text-[#f6d4d2]" />
+            <ChakraIcon color="#f6d4d2" />
               <span className="text-sm font-medium text-ayurveda-forest">Vedsatwa International</span>
             </div>
             
@@ -47,7 +46,7 @@ export function HeroSection() {
               Activate your success code & money code through DNA, Chakras & Subconscious Quantum Healing
             </p>
             
-            <Timer />
+            
             
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mt-8">
               <button 

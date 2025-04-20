@@ -131,7 +131,7 @@ export function BookingForm({ onClose }: BookingFormProps) {
           </div>
           <Button
             type="submit"
-            className="w-full ayurveda-btn mt-6"
+            className="w-full ayurveda-btn mt-6 bg-[#F6D4D2] text-black"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Submitting..." : "Secure Your Spot Now"}

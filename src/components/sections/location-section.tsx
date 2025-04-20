@@ -10,7 +10,7 @@ export function LocationSection() {
     <section id="location" className="py-20 px-4 relative bg-gradient-to-b from-background to-ayurveda-sandalwood/10">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="inline-block bg-ayurveda-saffron/20 text-ayurveda-forest px-4 py-1 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block bg-[#F6D4D2] text-ayurveda-forest px-4 py-1 rounded-full text-sm font-medium mb-4">
             Join Us in Nature's Paradise
           </span>
           <h2 className="section-title mx-auto">Location & Dates</h2>
@@ -67,7 +67,7 @@ export function LocationSection() {
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
                 onClick={() => setShowBookingForm(true)}
-                className="ayurveda-btn"
+                className="ayurveda-btn bg-[#F6D4D2] text-black"
               >
                 Book Your Spot Now
               </button>
@@ -77,7 +77,7 @@ export function LocationSection() {
                   <span className="text-sm text-foreground/70 line-through">₹21,000</span>
                   <div className="text-xl font-bold text-ayurveda-forest">₹9,000</div>
                 </div>
-                <div className="bg-ayurveda-saffron text-white text-xs font-bold px-2 py-1 rounded">
+                <div className="bg-[#F6D4D2] text-black text-xs font-bold px-2 py-1 rounded">
                   57% OFF
                 </div>
               </div>
