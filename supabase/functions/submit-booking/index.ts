@@ -57,3 +57,5 @@ serve(async (req) => {
     );
   }
 });
+
+// Verify that the edge function can be deployed
