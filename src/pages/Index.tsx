@@ -1,9 +1,12 @@
+
 import { useState, useEffect } from "react";
 import { HeroSection } from "@/components/sections/hero-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { LocationSection } from "@/components/sections/location-section";
 import { FooterSection } from "@/components/sections/footer-section";
 import { WhatsappFloat } from "@/components/whatsapp-float";
+import { CountdownTimer } from "@/components/ui/countdown-timer";
+import { HerbsSection } from "@/components/sections/herbs-section";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +24,7 @@ const Index = () => {
       <div className="fixed inset-0 flex items-center justify-center bg-background">
         <div className="flex flex-col items-center">
           <div className="relative">
-            <div className="w-16 h-16 border-4 border-ayurveda-saffron/30 border-t-ayurveda-saffron rounded-full animate-spin"></div>
+            <div className="w-16 h-16 border-4 border-[#f6d4d2]/30 border-t-[#f6d4d2] rounded-full animate-spin"></div>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-8 h-8 bg-ayurveda-forest/10 rounded-full"></div>
             </div>
@@ -34,8 +37,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <CountdownTimer />
       <HeroSection />
       <AboutSection />
+      <HerbsSection />
       <LocationSection />
       <FooterSection />
       <WhatsappFloat />
