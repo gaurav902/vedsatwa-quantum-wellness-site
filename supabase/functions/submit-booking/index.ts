@@ -10,6 +10,7 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
+  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -17,8 +18,14 @@ serve(async (req) => {
   try {
     const { name, email, phone, message } = await req.json();
 
+    // Validate input
+    if (!name || !email || !phone) {
+      throw new Error("Missing required fields: name, email, and phone are required");
+    }
+
+    // Format the email content with more details
     const emailContent = `
-      New Workshop Booking:
+      New Workshop Booking Request:
       
       Name: ${name}
       Email: ${email}
@@ -26,8 +33,11 @@ serve(async (req) => {
       Message: ${message || 'None provided'}
       
       Submitted at: ${new Date().toLocaleString()}
+      IP: ${req.headers.get("x-forwarded-for") || "Unknown"}
+      User Agent: ${req.headers.get("user-agent") || "Unknown"}
     `;
 
+    // Send email with Resend
     const emailResponse = await resend.emails.send({
       from: "Vedsatwa Workshop <onboarding@resend.dev>",
       to: ["seminar@tellmeindia.com"],
@@ -38,8 +48,12 @@ serve(async (req) => {
 
     console.log("Email sent successfully:", emailResponse);
 
+    // Return success response
     return new Response(
-      JSON.stringify({ success: true, message: "Booking submitted successfully" }),
+      JSON.stringify({ 
+        success: true, 
+        message: "Thank you! Your booking has been submitted successfully. We'll contact you soon." 
+      }),
       { 
         status: 200, 
         headers: { ...corsHeaders, "Content-Type": "application/json" } 
@@ -48,8 +62,13 @@ serve(async (req) => {
 
   } catch (error) {
     console.error("Error in submit-booking function:", error);
+    
+    // Return error response
     return new Response(
-      JSON.stringify({ success: false, error: error.message || "Failed to submit booking" }),
+      JSON.stringify({ 
+        success: false, 
+        error: error.message || "Failed to submit booking. Please try again later." 
+      }),
       { 
         status: 500, 
         headers: { ...corsHeaders, "Content-Type": "application/json" } 
@@ -57,5 +76,3 @@ serve(async (req) => {
     );
   }
 });
-
-// Verify that the edge function can be deployed
