@@ -1,4 +1,3 @@
-
 import { MapPin, Phone, ExternalLink } from "lucide-react";
 import { ChakraIcon } from "@/components/ui/chakra-icon";
 
@@ -84,8 +83,13 @@ export function FooterSection() {
           </div>
         </div>
         
-        <div className="mt-16 pt-8 border-t border-[#f6d4d2]/20 text-center text-white/60 text-sm">
-          <p>© {new Date().getFullYear()} Vedsatwa International. All rights reserved.</p>
+        <div className="mt-16 pt-8 border-t border-[#f6d4d2]/20 text-center">
+          <p className="text-white/60 text-sm">
+            © {new Date().getFullYear()} Vedsatwa International. All rights reserved.
+          </p>
+          <p className="text-[#f6d4d2] text-sm mt-2">
+            Proudly made by Team TellMeIndia with 💖
+          </p>
         </div>
       </div>
     </footer>
