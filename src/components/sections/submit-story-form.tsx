@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-import { supabaseClient } from "@/integrations/supabase/client";
+import { supabase } from "@/integrations/supabase/client";
 
 export function SubmitStoryForm() {
   const { toast } = useToast();
@@ -53,11 +53,11 @@ export function SubmitStoryForm() {
 
     try {
       // Send data to supabase edge function
-      const response = await fetch(`${supabaseClient.supabaseUrl}/functions/v1/submit-story`, {
+      const response = await fetch(`${supabase.supabaseUrl}/functions/v1/submit-story`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${supabaseClient.supabaseKey}`
+          "Authorization": `Bearer ${supabase.supabaseKey}`
         },
         body: JSON.stringify(formData),
       });
