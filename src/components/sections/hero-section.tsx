@@ -4,6 +4,7 @@ import { ChakraIcon } from "@/components/ui/chakra-icon";
 import { BookingForm } from "@/components/ui/booking-form";
 import { FloatingLeaf } from "@/components/ui/floating-leaf";
 import { ArrowDown } from "lucide-react";
+import { Timer } from "@/components/ui/timer";
 
 export function HeroSection() {
   const [showBookingForm, setShowBookingForm] = useState(false);
@@ -28,8 +29,13 @@ export function HeroSection() {
       <div className="container max-w-6xl mx-auto z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-3/5 text-center lg:text-left">
+            <img 
+              src="/lovable-uploads/c091ae93-da0a-4331-987e-37e879f93d36.png"
+              alt="Vedsatwa Logo"
+              className="w-48 mb-4 mx-auto lg:mx-0"
+            />
             <div className="inline-flex items-center gap-2 mb-6 bg-white/30 px-4 py-2 rounded-full backdrop-blur-sm">
-              <ChakraIcon size={20} />
+              <ChakraIcon size={20} className="text-[#f6d4d2]" />
               <span className="text-sm font-medium text-ayurveda-forest">Vedsatwa International</span>
             </div>
             
@@ -41,10 +47,13 @@ export function HeroSection() {
               Activate your success code & money code through DNA, Chakras & Subconscious Quantum Healing
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+            <Timer />
+            
+            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mt-8">
               <button 
                 onClick={() => setShowBookingForm(true)}
-                className="ayurveda-btn"
+                className="bg-[#f6d4d2] text-black font-medium px-6 py-3 rounded-full shadow-lg 
+                hover:shadow-xl transition-all duration-300 hover:translate-y-[-2px]"
               >
                 Join the 3-Day Workshop
               </button>
@@ -54,7 +63,7 @@ export function HeroSection() {
                   <span className="text-sm text-foreground/70 line-through">₹21,000</span>
                   <div className="text-xl font-bold text-ayurveda-forest">₹9,000</div>
                 </div>
-                <div className="bg-ayurveda-saffron text-white text-xs font-bold px-2 py-1 rounded">
+                <div className="bg-[#f6d4d2] text-black text-xs font-bold px-2 py-1 rounded">
                   57% OFF
                 </div>
               </div>
@@ -82,7 +91,7 @@ export function HeroSection() {
 
       <a 
         href="#about" 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-ayurveda-forest animate-bounce"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-[#f6d4d2]"
       >
         <span className="text-sm mb-2">Learn More</span>
         <ArrowDown size={20} />

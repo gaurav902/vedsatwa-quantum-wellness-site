@@ -1,9 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { HeroSection } from "@/components/sections/hero-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { LocationSection } from "@/components/sections/location-section";
-import { TestimonialSection } from "@/components/sections/testimonial-section";
 import { FooterSection } from "@/components/sections/footer-section";
 import { WhatsappFloat } from "@/components/whatsapp-float";
 
@@ -11,7 +9,6 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate content loading
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
@@ -40,7 +37,6 @@ const Index = () => {
       <HeroSection />
       <AboutSection />
       <LocationSection />
-      <TestimonialSection />
       <FooterSection />
       <WhatsappFloat />
     </div>
