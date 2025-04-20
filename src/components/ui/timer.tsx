@@ -1,47 +1,44 @@
 
 import { useState, useEffect } from 'react';
-import { Clock } from 'lucide-react';
+import { BookingForm } from "@/components/ui/booking-form";
+import { Button } from "@/components/ui/button";
 
 export function Timer() {
-  const [timeLeft, setTimeLeft] = useState({
-    hours: 24,
-    minutes: 0,
-    seconds: 0
-  });
+  const [showBookingForm, setShowBookingForm] = useState(false);
   const [seatsLeft] = useState(5);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 };
-        } else if (prev.minutes > 0) {
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
-        } else if (prev.hours > 0) {
-          return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        }
-        return prev;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <div className="glass p-4 rounded-xl flex items-center gap-4 max-w-md mx-auto">
-      <div className="bg-[#f6d4d2] p-3 rounded-lg">
-        <Clock className="text-black w-6 h-6" />
+    <div className="glass p-4 rounded-xl flex flex-col sm:flex-row items-center gap-4 max-w-md mx-auto">
+      <div className="bg-[#f6d4d2] p-3 rounded-lg flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black w-6 h-6">
+          <path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"></path>
+          <path d="M7 3.34V5a3 3 0 0 0 3 3h0a3 3 0 0 0 3-3V3.34"></path>
+          <path d="M12 14v7"></path>
+          <path d="M3 15v7"></path>
+          <path d="M21 9V3"></path>
+          <path d="M3 9V3"></path>
+          <path d="M9 18h1"></path>
+          <path d="M14 18h1"></path>
+          <path d="M13 22H7"></path>
+          <path d="M19 22h-2"></path>
+          <path d="M3 3h18v6H3z"></path>
+        </svg>
       </div>
-      <div>
+      <div className="flex-grow">
         <p className="text-xl font-bold text-black">
           Only {seatsLeft} seats remaining!
         </p>
         <p className="text-ayurveda-forest">
-          Offer ends in: {String(timeLeft.hours).padStart(2, '0')}:
-          {String(timeLeft.minutes).padStart(2, '0')}:
-          {String(timeLeft.seconds).padStart(2, '0')}
+          Secure your transformation journey today
         </p>
       </div>
+      <Button 
+        className="bg-[#f6d4d2] text-black hover:bg-[#f6d4d2]/90 rounded-full"
+        onClick={() => setShowBookingForm(true)}
+      >
+        Join Now
+      </Button>
+      {showBookingForm && <BookingForm onClose={() => setShowBookingForm(false)} />}
     </div>
   );
 };

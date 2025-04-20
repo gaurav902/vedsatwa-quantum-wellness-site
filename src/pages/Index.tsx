@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { HeroSection } from "@/components/sections/hero-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { LocationSection } from "@/components/sections/location-section";
@@ -37,6 +38,31 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <div className="fixed z-20 top-4 right-4">
+        <Link 
+          to="/stories" 
+          className="bg-[#f6d4d2] text-black hover:bg-[#f6d4d2]/90 py-2 px-4 rounded-full text-sm font-medium flex items-center gap-1 shadow-md hover:shadow-lg transition-all"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="16" 
+            height="16" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5z"/>
+            <path d="M8 7h6"/>
+            <path d="M8 11h8"/>
+            <path d="M8 15h5"/>
+          </svg>
+          Success Stories
+        </Link>
+      </div>
+      
       <CountdownTimer />
       <HeroSection />
       <AboutSection />

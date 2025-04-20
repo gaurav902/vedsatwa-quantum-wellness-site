@@ -2,9 +2,11 @@
 import { useState, useEffect } from 'react';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { BookingForm } from "@/components/ui/booking-form";
 
 export function CountdownTimer() {
   const [isOpen, setIsOpen] = useState(true);
+  const [showBookingForm, setShowBookingForm] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 2,
     hours: 23,
@@ -39,29 +41,36 @@ export function CountdownTimer() {
   );
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="bg-gray-900/95 border-none">
-        <div className="text-center space-y-6">
-          <h2 className="text-2xl font-semibold text-white mb-2">LIMITED SEATS AVAILABLE</h2>
-          <p className="text-gray-300">
-            Reserve your spot before registration closes. Only a few seats remain.
-          </p>
-          
-          <div className="flex justify-center gap-4 py-4">
-            <TimeBox value={timeLeft.days} label="Days" />
-            <TimeBox value={timeLeft.hours} label="Hours" />
-            <TimeBox value={timeLeft.minutes} label="Minutes" />
-            <TimeBox value={timeLeft.seconds} label="Seconds" />
-          </div>
+    <>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="bg-gray-900/95 border-none">
+          <div className="text-center space-y-6">
+            <h2 className="text-2xl font-semibold text-white mb-2">LIMITED SEATS AVAILABLE</h2>
+            <p className="text-gray-300">
+              Reserve your spot before registration closes. Only a few seats remain.
+            </p>
+            
+            <div className="flex justify-center gap-4 py-4">
+              <TimeBox value={timeLeft.days} label="Days" />
+              <TimeBox value={timeLeft.hours} label="Hours" />
+              <TimeBox value={timeLeft.minutes} label="Minutes" />
+              <TimeBox value={timeLeft.seconds} label="Seconds" />
+            </div>
 
-          <Button 
-            className="w-full bg-[#f6d4d2] text-black hover:bg-[#f6d4d2]/90 py-6 text-lg"
-            onClick={() => setIsOpen(false)}
-          >
-            Reserve Now
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
+            <Button 
+              className="w-full bg-[#f6d4d2] text-black hover:bg-[#f6d4d2]/90 py-6 text-lg"
+              onClick={() => {
+                setIsOpen(false);
+                setShowBookingForm(true);
+              }}
+            >
+              Reserve Now
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {showBookingForm && <BookingForm onClose={() => setShowBookingForm(false)} />}
+    </>
   );
 }
