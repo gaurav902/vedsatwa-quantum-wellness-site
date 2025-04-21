@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 const herbs = [
   {
@@ -98,35 +98,41 @@ export function HerbsSection() {
         </div>
       </div>
       <Dialog open={!!selectedHerb} onOpenChange={() => setSelectedHerb(null)}>
-        <DialogContent className="px-0 py-0 border-none overflow-hidden rounded-3xl shadow-2xl max-w-lg w-[97vw] sm:w-[90vw] md:w-[70vw] lg:w-[38rem] bg-transparent bg-none relative">
-          <div className="relative rounded-3xl overflow-hidden">
-            {/* Cloud/foggy glass effect */}
-            <div className="absolute inset-0 z-0 bg-white/40 backdrop-blur-2xl" />
-            <div className="absolute -bottom-12 left-2 right-8 h-24 bg-[#dde2ed]/80 rounded-full blur-2xl opacity-50"/>
-            <div className="absolute -top-8 -left-4 w-52 h-24 bg-[#bccbde]/50 rounded-full blur-2xl opacity-40" />
-            <div className="relative z-20 p-6 sm:p-8">
+        <DialogContent className="fixed inset-x-0 mx-auto z-50 px-0 py-0 border-none overflow-hidden rounded-3xl shadow-2xl max-w-lg w-[95vw] sm:w-[90vw] md:w-[70vw] lg:w-[38rem] bg-transparent">
+          <div className="relative rounded-3xl overflow-hidden h-[80vh] md:h-auto overflow-y-auto">
+            {/* Enhanced cloudy/foggy glass effect */}
+            <div className="absolute inset-0 z-0 bg-white/50 backdrop-blur-xl" />
+            <div className="absolute -bottom-16 left-0 right-0 h-36 bg-[#dde2ed]/70 rounded-full blur-3xl opacity-50"/>
+            <div className="absolute -top-12 -left-8 w-60 h-36 bg-[#bccbde]/50 rounded-full blur-3xl opacity-40" />
+            <div className="absolute top-1/2 -right-10 w-44 h-24 bg-[#e7eaef]/60 rounded-full blur-3xl opacity-30"/>
+            <div className="absolute bottom-1/3 left-20 w-32 h-16 bg-[#d4e0f0]/40 rounded-full blur-2xl opacity-30"/>
+            
+            <div className="relative z-20 p-5 sm:p-6 md:p-8">
               {selectedHerb && (
                 <>
                   <DialogTitle className="text-2xl font-extrabold text-ayurveda-forest text-center mb-4 tracking-widest drop-shadow">
                     {selectedHerb.name}
                   </DialogTitle>
-                  <div className="space-y-6">
-                    <p className="leading-relaxed font-serif text-lg text-ayurveda-forest/90">
+                  <DialogDescription className="sr-only">
+                    Detailed information about {selectedHerb.name}
+                  </DialogDescription>
+                  <div className="space-y-4 md:space-y-6">
+                    <p className="leading-relaxed font-serif text-base md:text-lg text-ayurveda-forest/90">
                       {selectedHerb.detailedDescription}
                     </p>
                     <div>
                       <h4 className="text-[#f6d4d2] font-semibold mb-2">Key Benefits</h4>
                       <ul className="ml-5 space-y-2 text-ayurveda-forest">
                         {selectedHerb.benefits.map((benefit, idx) => (
-                          <li key={idx} className="list-disc font-medium">{benefit}</li>
+                          <li key={idx} className="list-disc font-medium text-sm md:text-base">{benefit}</li>
                         ))}
                       </ul>
                     </div>
                     <div>
                       <h4 className="text-[#f6d4d2] font-semibold mb-2">Traditional Usage</h4>
-                      <p className="text-ayurveda-forest">{selectedHerb.usage}</p>
+                      <p className="text-ayurveda-forest text-sm md:text-base">{selectedHerb.usage}</p>
                     </div>
-                    <div className="mt-6 pt-4 border-t border-white/20">
+                    <div className="mt-4 pt-4 border-t border-white/20">
                       <p className="text-sm italic text-ayurveda-forest/70">
                         "The intelligence of the body exists within each plant. Nature provides the perfect remedies for balance."
                       </p>
