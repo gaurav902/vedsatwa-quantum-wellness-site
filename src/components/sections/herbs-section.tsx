@@ -98,7 +98,7 @@ export function HerbsSection() {
         </div>
       </div>
       <Dialog open={!!selectedHerb} onOpenChange={() => setSelectedHerb(null)}>
-        <DialogContent className="glass max-w-2xl bg-white/20 border border-white/20 text-ayurveda-forest backdrop-blur-3xl shadow-2xl">
+        <DialogContent className="bg-white/50 border border-white/40 text-ayurveda-forest rounded-2xl shadow-2xl backdrop-blur-lg frosted-glass max-w-2xl animate-fade-in">
           {selectedHerb && (
             <div className="p-2">
               <DialogTitle className="text-2xl font-extrabold text-ayurveda-forest text-center mb-4 tracking-widest drop-shadow">
@@ -129,7 +129,15 @@ export function HerbsSection() {
             </div>
           )}
         </DialogContent>
+        <style>{`
+          .frosted-glass {
+            box-shadow: 0 8px 32px 0 rgba(34,49,63,0.15);
+            backdrop-filter: blur(22px) saturate(120%);
+            -webkit-backdrop-filter: blur(22px) saturate(120%);
+          }
+        `}</style>
       </Dialog>
     </section>
   );
 }
+

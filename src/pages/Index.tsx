@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HeroSection } from "@/components/sections/hero-section";
@@ -8,6 +7,7 @@ import { FooterSection } from "@/components/sections/footer-section";
 import { WhatsappFloat } from "@/components/whatsapp-float";
 import { CountdownTimer } from "@/components/ui/countdown-timer";
 import { HerbsSection } from "@/components/sections/herbs-section";
+import { Header } from "@/components/ui/header";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,6 +38,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       <div className="fixed z-20 top-4 right-4">
         <Link 
           to="/stories" 
