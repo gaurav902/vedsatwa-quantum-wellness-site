@@ -3,45 +3,33 @@ import { ChakraIcon } from "@/components/ui/chakra-icon";
 import { StoryCard } from "@/components/ui/story-card";
 import { SubmitStoryForm } from "@/components/sections/submit-story-form";
 import { Link } from "react-router-dom";
-
-const stories = [
-  {
-    title: "The Balance Within",
-    preview: "After years of stress and imbalance, Ayurveda helped me rediscover inner peace through diet...",
-    fullStory: "After years of stress and imbalance, Ayurveda helped me rediscover inner peace through diet, routine, and herbs. Following a Vata-pacifying regimen, I incorporated warm meals, regular sleep, and ashwagandha tea. Within weeks, my anxiety and insomnia eased naturally.",
-    author: "Aanya R.",
-    authorDetails: "34, Yoga Instructor"
-  },
-  {
-    title: "Healing Through Nature",
-    preview: "Ashwagandha and meditation changed the way I deal with anxiety. I feel grounded...",
-    fullStory: "Ashwagandha and daily meditation reshaped my life. I went from panic attacks and overthinking to calm, steady energy. I follow a morning routine based on my dosha, and I've never felt more mentally clear.",
-    author: "Siddharth P.",
-    authorDetails: "28, Software Engineer"
-  },
-  {
-    title: "Journey to Gut Health",
-    preview: "Triphala cured my chronic digestion issues when nothing else worked...",
-    fullStory: "Years of bloating, acidity, and poor digestion led me to try Triphala powder. Within a month, my digestion improved drastically. Now I follow a seasonal diet and avoid processed foods, guided by Ayurvedic principles.",
-    author: "Meera S.",
-    authorDetails: "42, Entrepreneur"
-  },
-  {
-    title: "Skin Reborn",
-    preview: "Turmeric and neem were my go-to treatments — no more chemicals...",
-    fullStory: "Persistent acne and dry skin had plagued me for years. I ditched commercial products and followed a Neem + Turmeric routine suggested by an Ayurvedic practitioner. Along with detox teas, my skin transformed in 3 months.",
-    author: "Rajiv M.",
-    authorDetails: "31, Photographer"
-  }
-];
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Stories = () => {
+  const [stories, setStories] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStories = async () => {
+      setIsLoading(true);
+      const { data, error } = await supabase
+        .from("stories")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (!error && data) {
+        setStories(data);
+      }
+      setIsLoading(false);
+    };
+    fetchStories();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header section */}
-      <div className="bg-gradient-to-r from-ayurveda-forest/90 to-[#f6d4d2]/90 text-white py-24 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-background flex flex-col items-center">
+      <div className="bg-gradient-to-r from-ayurveda-forest/90 to-[#f6d4d2]/90 text-white py-24 px-4 w-full relative overflow-hidden flex justify-center">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519638399535-1b036603ac77')] bg-cover bg-center opacity-20"></div>
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto relative z-10 w-full">
           <Link 
             to="/" 
             className="inline-flex items-center gap-2 mb-8 text-white/90 hover:text-white transition-colors"
@@ -75,30 +63,34 @@ const Stories = () => {
       </div>
 
       {/* Featured stories */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-20 px-4 w-full flex justify-center">
+        <div className="max-w-6xl mx-auto w-full">
           <h2 className="text-3xl font-bold text-ayurveda-forest mb-12 flex items-center">
             <span className="text-[#f6d4d2] mr-2">📖</span> Featured Stories
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {stories.map((story, index) => (
-              <StoryCard
-                key={index}
-                title={story.title}
-                preview={story.preview}
-                fullStory={story.fullStory}
-                author={story.author}
-                authorDetails={story.authorDetails}
-              />
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="text-center text-ayurveda-forest">Loading stories...</div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {stories.map((story, idx) => (
+                <StoryCard
+                  key={story.id || idx}
+                  title={story.name}
+                  preview={story.story.substring(0, 90) + "..."}
+                  fullStory={story.story}
+                  author={story.name}
+                  authorDetails={story.location || "Ayurvedic Enthusiast"}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* Nature's wisdom quote */}
-      <section className="py-12 px-4 bg-[#f6d4d2]/10">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-12 px-4 bg-[#f6d4d2]/10 w-full flex justify-center">
+        <div className="max-w-6xl mx-auto w-full">
           <div className="text-center">
             <div className="inline-block mb-4">
               <ChakraIcon size={32} className="text-[#f6d4d2]" />
@@ -114,8 +106,8 @@ const Stories = () => {
       </section>
 
       {/* Submit story form */}
-      <section className="py-20 px-4">
-        <div className="max-w-3xl mx-auto">
+      <section className="py-20 px-4 w-full flex justify-center">
+        <div className="max-w-3xl mx-auto w-full">
           <h2 className="text-3xl font-bold text-ayurveda-forest mb-6 flex items-center">
             <span className="text-[#f6d4d2] mr-2">✍️</span> Submit Your Ayurvedic Journey
           </h2>

@@ -65,6 +65,39 @@ export type Database = {
           },
         ]
       }
+      stories: {
+        Row: {
+          approved: boolean
+          consent: boolean
+          created_at: string
+          email: string
+          id: string
+          location: string | null
+          name: string
+          story: string
+        }
+        Insert: {
+          approved?: boolean
+          consent: boolean
+          created_at?: string
+          email: string
+          id?: string
+          location?: string | null
+          name: string
+          story: string
+        }
+        Update: {
+          approved?: boolean
+          consent?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+          location?: string | null
+          name?: string
+          story?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

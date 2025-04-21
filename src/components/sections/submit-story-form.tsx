@@ -29,7 +29,7 @@ export function SubmitStoryForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate form
     if (!formData.name || !formData.email || !formData.story || !formData.consent) {
       toast({
@@ -52,18 +52,19 @@ export function SubmitStoryForm() {
     setIsSubmitting(true);
 
     try {
-      // Send data to supabase edge function
-      const response = await fetch(`${supabase.supabaseUrl}/functions/v1/submit-story`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${supabase.supabaseKey}`
-        },
-        body: JSON.stringify(formData),
-      });
+      // Insert new pending story into the DB (approved will default to false)
+      const { error } = await supabase
+        .from("stories")
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          location: formData.location,
+          story: formData.story,
+          consent: formData.consent
+        });
 
-      if (!response.ok) {
-        throw new Error("Failed to submit story");
+      if (error) {
+        throw error;
       }
 
       toast({
@@ -71,7 +72,6 @@ export function SubmitStoryForm() {
         description: "Thank you for sharing your Ayurvedic journey. We'll review your story for publishing.",
       });
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -176,7 +176,8 @@ export function SubmitStoryForm() {
           disabled={isSubmitting}
           className="bg-[#f6d4d2] hover:bg-[#f6d4d2]/90 text-black font-medium px-6 py-3 rounded-full"
         >
-          🌿 Submit My Story
+          <span role="img" aria-label="leaf" className="mr-2" style={{ color: '#f6d4d2' }}>🌿</span>
+          Submit My Story
         </Button>
       </form>
     </div>

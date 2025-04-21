@@ -1,22 +1,23 @@
-
 import { useState } from "react";
 import { ChakraIcon } from "@/components/ui/chakra-icon";
 import { BookingForm } from "@/components/ui/booking-form";
 import { FloatingLeaf } from "@/components/ui/floating-leaf";
 import { ArrowDown } from "lucide-react";
+import logo from "/public/lovable-uploads/vedsatwa.png";
 
 export function HeroSection() {
   const [showBookingForm, setShowBookingForm] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center py-16 px-4 overflow-hidden">
-      {/* Background elements */}
+    <section className="relative bg-gradient-to-b from-ayurveda-forest/10 to-[#f6d4d2]/10 pt-14">
+      <div className="flex justify-center mb-4">
+        <img src={logo} alt="Vedsatwa Logo" className="h-16 md:h-20" />
+      </div>
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 right-0 w-40 h-40 bg-ayurveda-saffron/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-60 h-60 bg-ayurveda-forest/10 rounded-full blur-3xl"></div>
       </div>
       
-      {/* Floating leaves */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <FloatingLeaf color="#4CAF50" size={20} delay={0} duration={15} />
         <FloatingLeaf color="#8BC34A" size={16} delay={2} duration={17} />
@@ -28,11 +29,6 @@ export function HeroSection() {
       <div className="container max-w-6xl mx-auto z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-3/5 text-center lg:text-left">
-            <img 
-              src="/lovable-uploads/vedsatwa.png"
-              alt="Vedsatwa Logo"
-              className="w-48 mb-4 mx-auto lg:mx-0"
-            />
             <div className="inline-flex items-center gap-2 mb-6 bg-white/30 px-4 py-2 rounded-full backdrop-blur-sm">
             <ChakraIcon color="#f6d4d2" />
               <span className="text-sm font-medium text-ayurveda-forest">Vedsatwa International</span>
