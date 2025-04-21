@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -97,21 +98,21 @@ export function HerbsSection() {
         </div>
       </div>
       <Dialog open={!!selectedHerb} onOpenChange={() => setSelectedHerb(null)}>
-        <DialogContent className="glass max-w-2xl bg-gradient-to-br from-[#f6d4d2]/90 to-[#F2FCE2]/95 border-ayurveda-forest/20 text-ayurveda-forest backdrop-blur-md shadow-2xl">
+        <DialogContent className="glass max-w-2xl bg-white/20 border border-white/20 text-ayurveda-forest backdrop-blur-3xl shadow-2xl">
           {selectedHerb && (
             <div className="p-2">
               <DialogTitle className="text-2xl font-extrabold text-ayurveda-forest text-center mb-4 tracking-widest drop-shadow">
                 {selectedHerb.name}
               </DialogTitle>
               <div className="space-y-6">
-                <p className="leading-relaxed font-serif text-lg">
+                <p className="leading-relaxed font-serif text-lg text-ayurveda-forest/90">
                   {selectedHerb.detailedDescription}
                 </p>
                 <div>
                   <h4 className="text-[#f6d4d2] font-semibold mb-2">Key Benefits</h4>
-                  <ul className="ml-5 space-y-2">
+                  <ul className="ml-5 space-y-2 text-ayurveda-forest">
                     {selectedHerb.benefits.map((benefit, idx) => (
-                      <li key={idx} className="list-disc text-ayurveda-forest font-medium">{benefit}</li>
+                      <li key={idx} className="list-disc font-medium">{benefit}</li>
                     ))}
                   </ul>
                 </div>
@@ -119,8 +120,8 @@ export function HerbsSection() {
                   <h4 className="text-[#f6d4d2] font-semibold mb-2">Traditional Usage</h4>
                   <p className="text-ayurveda-forest">{selectedHerb.usage}</p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-[#f6d4d2]/30">
-                  <p className="text-sm text-ayurveda-forest/60 italic">
+                <div className="mt-6 pt-4 border-t border-white/20">
+                  <p className="text-sm italic text-ayurveda-forest/70">
                     "The intelligence of the body exists within each plant. Nature provides the perfect remedies for balance."
                   </p>
                 </div>

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { ChakraIcon } from "@/components/ui/chakra-icon";
 import { BookingForm } from "@/components/ui/booking-form";
@@ -10,8 +11,8 @@ export function HeroSection() {
 
   return (
     <section className="relative bg-gradient-to-b from-ayurveda-forest/10 to-[#f6d4d2]/10 pt-14">
-      <div className="flex justify-center mb-4">
-        <img src={logo} alt="Vedsatwa Logo" className="h-16 md:h-20" />
+      <div className="container max-w-6xl mx-auto z-10 flex items-center justify-start gap-6 p-4 md:p-0">
+        <img src={logo} alt="Vedsatwa Logo" className="h-20 md:h-24" />
       </div>
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 right-0 w-40 h-40 bg-ayurveda-saffron/10 rounded-full blur-3xl"></div>
@@ -27,10 +28,10 @@ export function HeroSection() {
       </div>
 
       <div className="container max-w-6xl mx-auto z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-12 px-4 md:px-0">
           <div className="lg:w-3/5 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 mb-6 bg-white/30 px-4 py-2 rounded-full backdrop-blur-sm">
-            <ChakraIcon color="#f6d4d2" />
+              <ChakraIcon color="#f6d4d2" />
               <span className="text-sm font-medium text-ayurveda-forest">Vedsatwa International</span>
             </div>
             
@@ -38,11 +39,9 @@ export function HeroSection() {
               Learn to Live a Best Version of Life
             </h1>
             
-            <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-2xl">
+            <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-2xl mx-auto lg:mx-0">
               Activate your success code & money code through DNA, Chakras & Subconscious Quantum Healing
             </p>
-            
-            
             
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mt-8">
               <button 
