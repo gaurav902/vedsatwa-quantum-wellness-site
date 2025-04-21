@@ -38,7 +38,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      
       <div className="fixed z-20 top-4 right-4">
         <Link 
           to="/stories" 
