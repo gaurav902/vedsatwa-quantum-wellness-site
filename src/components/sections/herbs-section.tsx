@@ -98,46 +98,46 @@ export function HerbsSection() {
         </div>
       </div>
       <Dialog open={!!selectedHerb} onOpenChange={() => setSelectedHerb(null)}>
-        <DialogContent className="bg-white/50 border border-white/40 text-ayurveda-forest rounded-2xl shadow-2xl backdrop-blur-lg frosted-glass max-w-2xl animate-fade-in">
-          {selectedHerb && (
-            <div className="p-2">
-              <DialogTitle className="text-2xl font-extrabold text-ayurveda-forest text-center mb-4 tracking-widest drop-shadow">
-                {selectedHerb.name}
-              </DialogTitle>
-              <div className="space-y-6">
-                <p className="leading-relaxed font-serif text-lg text-ayurveda-forest/90">
-                  {selectedHerb.detailedDescription}
-                </p>
-                <div>
-                  <h4 className="text-[#f6d4d2] font-semibold mb-2">Key Benefits</h4>
-                  <ul className="ml-5 space-y-2 text-ayurveda-forest">
-                    {selectedHerb.benefits.map((benefit, idx) => (
-                      <li key={idx} className="list-disc font-medium">{benefit}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-[#f6d4d2] font-semibold mb-2">Traditional Usage</h4>
-                  <p className="text-ayurveda-forest">{selectedHerb.usage}</p>
-                </div>
-                <div className="mt-6 pt-4 border-t border-white/20">
-                  <p className="text-sm italic text-ayurveda-forest/70">
-                    "The intelligence of the body exists within each plant. Nature provides the perfect remedies for balance."
-                  </p>
-                </div>
-              </div>
+        <DialogContent className="px-0 py-0 border-none overflow-hidden rounded-3xl shadow-2xl max-w-lg w-[97vw] sm:w-[90vw] md:w-[70vw] lg:w-[38rem] bg-transparent bg-none relative">
+          <div className="relative rounded-3xl overflow-hidden">
+            {/* Cloud/foggy glass effect */}
+            <div className="absolute inset-0 z-0 bg-white/40 backdrop-blur-2xl" />
+            <div className="absolute -bottom-12 left-2 right-8 h-24 bg-[#dde2ed]/80 rounded-full blur-2xl opacity-50"/>
+            <div className="absolute -top-8 -left-4 w-52 h-24 bg-[#bccbde]/50 rounded-full blur-2xl opacity-40" />
+            <div className="relative z-20 p-6 sm:p-8">
+              {selectedHerb && (
+                <>
+                  <DialogTitle className="text-2xl font-extrabold text-ayurveda-forest text-center mb-4 tracking-widest drop-shadow">
+                    {selectedHerb.name}
+                  </DialogTitle>
+                  <div className="space-y-6">
+                    <p className="leading-relaxed font-serif text-lg text-ayurveda-forest/90">
+                      {selectedHerb.detailedDescription}
+                    </p>
+                    <div>
+                      <h4 className="text-[#f6d4d2] font-semibold mb-2">Key Benefits</h4>
+                      <ul className="ml-5 space-y-2 text-ayurveda-forest">
+                        {selectedHerb.benefits.map((benefit, idx) => (
+                          <li key={idx} className="list-disc font-medium">{benefit}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="text-[#f6d4d2] font-semibold mb-2">Traditional Usage</h4>
+                      <p className="text-ayurveda-forest">{selectedHerb.usage}</p>
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-white/20">
+                      <p className="text-sm italic text-ayurveda-forest/70">
+                        "The intelligence of the body exists within each plant. Nature provides the perfect remedies for balance."
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
-          )}
+          </div>
         </DialogContent>
-        <style>{`
-          .frosted-glass {
-            box-shadow: 0 8px 32px 0 rgba(34,49,63,0.15);
-            backdrop-filter: blur(22px) saturate(120%);
-            -webkit-backdrop-filter: blur(22px) saturate(120%);
-          }
-        `}</style>
       </Dialog>
     </section>
   );
 }
-

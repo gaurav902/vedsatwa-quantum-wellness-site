@@ -34,38 +34,42 @@ export function CountdownTimer() {
   }, []);
 
   const TimeBox = ({ value, label }: { value: number; label: string }) => (
-    <div className="bg-gray-800/80 rounded-lg p-4 w-24">
-      <div className="text-3xl font-bold text-white">{String(value).padStart(2, '0')}</div>
-      <div className="text-sm text-gray-400">{label}</div>
+    <div className="bg-gray-800/80 rounded-lg p-3 w-16 sm:p-4 sm:w-24 flex flex-col items-center">
+      <div className="text-xl sm:text-3xl font-bold text-white">{String(value).padStart(2, '0')}</div>
+      <div className="text-xs sm:text-sm text-gray-400">{label}</div>
     </div>
   );
 
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="bg-gray-900/95 border-none">
-          <div className="text-center space-y-6">
-            <h2 className="text-2xl font-semibold text-white mb-2">LIMITED SEATS AVAILABLE</h2>
-            <p className="text-gray-300">
-              Reserve your spot before registration closes. Only a few seats remain.
-            </p>
-            
-            <div className="flex justify-center gap-4 py-4">
-              <TimeBox value={timeLeft.days} label="Days" />
-              <TimeBox value={timeLeft.hours} label="Hours" />
-              <TimeBox value={timeLeft.minutes} label="Minutes" />
-              <TimeBox value={timeLeft.seconds} label="Seconds" />
+        <DialogContent className="bg-white/60 border-none max-w-lg w-[95vw] sm:w-[90vw] rounded-3xl shadow-2xl p-0 overflow-hidden relative flex items-center justify-center">
+          {/* Cloudy background overlays */}
+          <div className="absolute inset-0 z-0 bg-white/30 backdrop-blur-2xl" />
+          <div className="absolute -bottom-6 left-6 w-60 h-20 bg-[#dde2ed]/70 rounded-full blur-2xl opacity-40"/>
+          <div className="absolute -top-7 -right-8 w-44 h-16 bg-[#bccbde]/50 rounded-full blur-2xl opacity-30"/>
+          <div className="relative z-10 w-full">
+            <div className="text-center px-4 py-7 sm:py-10 space-y-5 sm:space-y-7">
+              <h2 className="text-2xl font-semibold text-ayurveda-forest mb-2">LIMITED SEATS AVAILABLE</h2>
+              <p className="text-gray-700 text-sm sm:text-base max-w-xs mx-auto">
+                Reserve your spot before registration closes. Only a few seats remain.
+              </p>
+              <div className="flex justify-center gap-2 sm:gap-4 py-2 sm:py-4">
+                <TimeBox value={timeLeft.days} label="Days" />
+                <TimeBox value={timeLeft.hours} label="Hours" />
+                <TimeBox value={timeLeft.minutes} label="Minutes" />
+                <TimeBox value={timeLeft.seconds} label="Seconds" />
+              </div>
+              <Button 
+                className="w-full bg-[#f6d4d2] text-black hover:bg-[#f6d4d2]/90 py-3 sm:py-6 text-base sm:text-lg font-semibold rounded-full"
+                onClick={() => {
+                  setIsOpen(false);
+                  setShowBookingForm(true);
+                }}
+              >
+                Reserve Now
+              </Button>
             </div>
-
-            <Button 
-              className="w-full bg-[#f6d4d2] text-black hover:bg-[#f6d4d2]/90 py-6 text-lg"
-              onClick={() => {
-                setIsOpen(false);
-                setShowBookingForm(true);
-              }}
-            >
-              Reserve Now
-            </Button>
           </div>
         </DialogContent>
       </Dialog>
