@@ -1,13 +1,14 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HeroSection } from "@/components/sections/hero-section";
-import { AboutSection } from "@/components/sections/about-section";
+import { DnaSection } from "@/components/sections/dna-section";
+import { ChakrasSection } from "@/components/sections/chakras-section";
+import { ManifestationSection } from "@/components/sections/manifestation-section";
 import { LocationSection } from "@/components/sections/location-section";
 import { FooterSection } from "@/components/sections/footer-section";
 import { WhatsappFloat } from "@/components/whatsapp-float";
 import { CountdownTimer } from "@/components/ui/countdown-timer";
-import { HerbsSection } from "@/components/sections/herbs-section";
-import { Header } from "@/components/ui/header";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +39,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      
       <div className="fixed z-20 top-4 right-4">
         <Link 
           to="/stories" 
@@ -66,8 +66,9 @@ const Index = () => {
       
       <CountdownTimer />
       <HeroSection />
-      <AboutSection />
-      <HerbsSection />
+      <DnaSection />
+      <ChakrasSection />
+      <ManifestationSection />
       <LocationSection />
       <FooterSection />
       <WhatsappFloat />

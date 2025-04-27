@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { ChakraIcon } from "@/components/ui/chakra-icon";
 import { BookingForm } from "@/components/ui/booking-form";
@@ -39,8 +40,12 @@ export function HeroSection() {
               Learn to Live a Best Version of Life
             </h1>
 
-            <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Activate your success code & money code through DNA, Chakras & Subconscious Quantum Healing
+            <p className="text-lg text-foreground/80 mb-4">
+              Are you struggling with tiredness, anger, depression, anxiety, conflicts, stress, uncertainty, loop of failures or a sense of disconnection? 😕
+            </p>
+
+            <p className="text-lg text-foreground/80 mb-8">
+              The answer might lie within you—more specifically, in your DNA, CHAKRAS, SUB CONSCIOUSNESS.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mt-8">
@@ -75,7 +80,9 @@ export function HeroSection() {
                 />
                 <div className="absolute bottom-4 left-4 right-4 bg-white/80 backdrop-blur-sm p-4 rounded-lg">
                   <h3 className="font-bold text-ayurveda-forest">Dr. UV Singh</h3>
-                  <p className="text-sm text-foreground/80">Neuro Psychology Coach, Ph.D. in Ayurveda</p>
+                  <p className="text-sm text-foreground/80">
+                    M.Sc, P.hd Ayurveda, MARMA & Neurophysiology Coach
+                  </p>
                 </div>
               </div>
             </div>
@@ -84,7 +91,7 @@ export function HeroSection() {
       </div>
 
       <a
-        href="#about"
+        href="#dna"
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-[#f6d4d2]"
       >
         <span className="text-sm mb-2">Learn More</span>
