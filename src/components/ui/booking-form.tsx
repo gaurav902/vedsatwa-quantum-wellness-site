@@ -26,13 +26,13 @@ export function BookingForm({ onClose }: BookingFormProps) {
     setIsSubmitting(true);
 
     try {
-      // Call the Supabase Edge Function to submit the booking and send email
-      const { data, error } = await supabase.functions.invoke('submit-booking', {
-        body: formData,
-      });
+      // Insert the booking into the database
+      const { error } = await supabase
+        .from("bookings")
+        .insert([formData]);
 
       if (error) {
-        throw new Error(error.message || "Failed to submit booking");
+        throw error;
       }
 
       // Show success message
@@ -43,7 +43,7 @@ export function BookingForm({ onClose }: BookingFormProps) {
       
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error(error instanceof Error ? error.message : "Failed to submit booking. Please try again.");
+      toast.error("Failed to submit booking. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -131,7 +131,7 @@ export function BookingForm({ onClose }: BookingFormProps) {
           </div>
           <Button
             type="submit"
-            className="w-full ayurveda-btn mt-6 bg-[#F6D4D2] text-black"
+            className="w-full ayurveda-btn mt-6 bg-[#f6d4d2] text-black"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Submitting..." : "Secure Your Spot Now"}

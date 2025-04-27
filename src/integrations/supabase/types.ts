@@ -9,6 +9,36 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      bookings: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          name: string
+          phone: string
+          status: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          phone: string
+          status?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string
+          status?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           id: string
@@ -71,6 +101,7 @@ export type Database = {
           consent: boolean
           created_at: string
           email: string
+          featured: boolean | null
           id: string
           location: string | null
           name: string
@@ -81,6 +112,7 @@ export type Database = {
           consent: boolean
           created_at?: string
           email: string
+          featured?: boolean | null
           id?: string
           location?: string | null
           name: string
@@ -91,6 +123,7 @@ export type Database = {
           consent?: boolean
           created_at?: string
           email?: string
+          featured?: boolean | null
           id?: string
           location?: string | null
           name?: string
