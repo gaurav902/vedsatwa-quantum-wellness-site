@@ -2,10 +2,11 @@
 import { useState } from "react";
 import { ChakraIcon } from "./chakra-icon";
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 
 interface ChakraPoint {
@@ -22,15 +23,15 @@ interface ChakraPoint {
 }
 
 export function ChakraVisualization() {
-  const [hoveredChakra, setHoveredChakra] = useState<string | null>(null);
+  const [selectedChakra, setSelectedChakra] = useState<ChakraPoint | null>(null);
 
   const chakraPoints: ChakraPoint[] = [
     {
       name: "crown",
       title: "Crown Chakra (Sahasrara)",
-      description: "Connection to divine consciousness and spiritual awakening",
+      description: "The gateway to higher consciousness and spiritual connection",
       color: "#9932CC",
-      top: "8%",
+      top: "15%",
       left: "50%",
       mantra: "OM",
       element: "Divine Consciousness",
@@ -45,10 +46,10 @@ export function ChakraVisualization() {
     {
       name: "third",
       title: "Third Eye Chakra (Ajna)",
-      description: "Center of intuition and inner wisdom",
+      description: "The center of intuition and inner vision",
       color: "#0000FF",
-      top: "20%",
-      left: "60%",
+      top: "25%",
+      left: "50%",
       mantra: "OM",
       element: "Light",
       qualities: ["Intuition", "Wisdom", "Vision"],
@@ -149,69 +150,84 @@ export function ChakraVisualization() {
   return (
     <div className="relative w-full max-w-4xl mx-auto h-[800px]">
       {/* Meditation Figure */}
-      <div className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-80"
+      <div className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-90"
         style={{ backgroundImage: "url('/lovable-uploads/cff3fc06-4b57-47c0-bcf4-c462b8ae1b3e.png')" }}
       />
 
       {/* Chakra Points */}
       {chakraPoints.map((chakra) => (
-        <HoverCard key={chakra.name} openDelay={1000}>
-          <HoverCardTrigger asChild>
-            <motion.div
-              className="absolute cursor-pointer z-20"
-              style={{ 
-                top: chakra.top,
-                left: chakra.left,
-                transform: 'translate(-50%, -50%)'
-              }}
-              whileHover={{ scale: 1.2 }}
-              onHoverStart={() => setHoveredChakra(chakra.name)}
-              onHoverEnd={() => setHoveredChakra(null)}
+        <motion.button
+          key={chakra.name}
+          className="absolute cursor-pointer z-20"
+          style={{ 
+            top: chakra.top,
+            left: chakra.left,
+            transform: 'translate(-50%, -50%)'
+          }}
+          onClick={() => setSelectedChakra(chakra)}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <ChakraIcon
+            chakraName={chakra.name}
+            size={48}
+            interactive={true}
+            pulseIntensity={1.2}
+          />
+        </motion.button>
+      ))}
+
+      {/* Chakra Dialog */}
+      <Dialog open={!!selectedChakra} onOpenChange={() => setSelectedChakra(null)}>
+        <DialogContent className="max-w-2xl glass">
+          <DialogHeader>
+            <DialogTitle 
+              className="text-2xl font-bold"
+              style={{ color: selectedChakra?.color }}
             >
-              <ChakraIcon
-                chakraName={chakra.name}
-                size={48}
-                interactive={true}
-                pulseIntensity={hoveredChakra === chakra.name ? 2 : 1.2}
-              />
-            </motion.div>
-          </HoverCardTrigger>
-          <HoverCardContent 
-            align="center"
-            className="w-80 backdrop-blur-xl bg-white/80 dark:bg-black/80 border-none shadow-xl"
-          >
-            <div className="flex flex-col gap-3">
-              <h3 
-                className="text-xl font-semibold"
-                style={{ color: chakra.color }}
-              >
-                {chakra.title}
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                {chakra.description}
-              </p>
-              <div className="grid grid-cols-2 gap-4 mt-2">
-                <div>
-                  <h4 className="font-semibold text-sm mb-1">Element</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">{chakra.element}</p>
+              {selectedChakra?.title}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-6 py-4">
+            <div className="flex flex-col gap-4">
+              <p className="text-lg text-foreground/90">{selectedChakra?.description}</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-2">Sacred Sound (Mantra)</h4>
+                    <p className="text-lg font-medium">{selectedChakra?.mantra}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Element</h4>
+                    <p>{selectedChakra?.element}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-sm mb-1">Mantra</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">{chakra.mantra}</p>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-2">Key Qualities</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                      {selectedChakra?.qualities.map((quality, index) => (
+                        <li key={index}>{quality}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold mb-2">Benefits</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                      {selectedChakra?.benefits.map((benefit, index) => (
+                        <li key={index}>{benefit}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-              <div className="mt-2">
-                <h4 className="font-semibold text-sm mb-1">Benefits</h4>
-                <ul className="text-sm text-gray-600 dark:text-gray-300 list-disc list-inside">
-                  {chakra.benefits.map((benefit, index) => (
-                    <li key={index} className="ml-2">{benefit}</li>
-                  ))}
-                </ul>
               </div>
             </div>
-          </HoverCardContent>
-        </HoverCard>
-      ))}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
