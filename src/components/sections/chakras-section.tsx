@@ -50,7 +50,7 @@ export function ChakrasSection() {
             <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-4 max-w-sm mx-auto text-center mb-10">
               <p className="text-white/90 text-sm">
                 <span className="font-bold block mb-1">Join Our Chakra Healing Workshop</span>
-                23, 24, 25 MAY 2025
+                30 MAY - 1 JUNE 2025
               </p>
             </div>
 

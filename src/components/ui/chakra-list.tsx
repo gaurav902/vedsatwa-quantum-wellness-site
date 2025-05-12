@@ -172,7 +172,7 @@ export function ChakrasList() {
                   
                   <div className="mt-4 p-3 bg-black/20 rounded-lg">
                     <p className="text-sm">
-                      <span className="font-semibold">Balance this chakra</span>: Join our workshop on May 23-25, 2025 to learn 
+                      <span className="font-semibold">Balance this chakra</span>: Join our workshop on May 30 - June 1, 2025 to learn 
                       techniques for balancing and activating your {chakra.sanskritName} chakra.
                     </p>
                   </div>

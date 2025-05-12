@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HeroSection } from "@/components/sections/hero-section";
@@ -65,7 +64,7 @@ const Index = () => {
       </div>
       
       <CountdownTimer 
-        targetDate="May 23, 2025" 
+        targetDate="May 30, 2025" 
         eventTitle="Chakra Healing Workshop" 
       />
       <HeroSection />

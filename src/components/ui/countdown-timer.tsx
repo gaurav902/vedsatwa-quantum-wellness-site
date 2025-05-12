@@ -1,17 +1,23 @@
+
 import { useState, useEffect } from 'react';
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { BookingForm } from "@/components/ui/booking-form";
 
-export function CountdownTimer() {
+interface CountdownTimerProps {
+  targetDate: string;
+  eventTitle: string;
+}
+
+export function CountdownTimer({ targetDate, eventTitle }: CountdownTimerProps) {
   const [isOpen, setIsOpen] = useState(true);
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   function calculateTimeLeft() {
-    const targetDate = new Date("2025-05-21T00:00:00");
+    const target = new Date(targetDate);
     const now = new Date();
-    const difference = targetDate.getTime() - now.getTime();
+    const difference = target.getTime() - now.getTime();
 
     const totalSeconds = Math.max(0, Math.floor(difference / 1000));
     const days = Math.floor(totalSeconds / (3600 * 24));
@@ -41,6 +47,7 @@ export function CountdownTimer() {
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="bg-gray-900/95 border-none max-w-[90vw] sm:max-w-md w-full mx-2 sm:mx-0 p-4 sm:p-6 rounded-xl">
+          <DialogTitle className="sr-only">{eventTitle} Countdown</DialogTitle>
           <div className="text-center space-y-6">
             <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">LIMITED SEATS AVAILABLE</h2>
             <p className="text-gray-300 text-sm sm:text-base">
