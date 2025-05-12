@@ -64,7 +64,7 @@ const Index = () => {
         </Link>
       </div>
       
-      <CountdownTimer />
+      <CountdownTimer targetDate="May 23, 2025" eventTitle="Chakra Healing Workshop" />
       <HeroSection />
       <DnaSection />
       <ChakrasSection />

@@ -39,6 +39,103 @@ export type Database = {
         }
         Relationships: []
       }
+      lead_contact_numbers: {
+        Row: {
+          contact_number: string
+          created_at: string
+          id: string
+          lead_id: string
+        }
+        Insert: {
+          contact_number: string
+          created_at?: string
+          id?: string
+          lead_id: string
+        }
+        Update: {
+          contact_number?: string
+          created_at?: string
+          id?: string
+          lead_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_contact_numbers_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_services: {
+        Row: {
+          category: string | null
+          created_at: string
+          id: string
+          lead_id: string
+          service: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          lead_id: string
+          service: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          lead_id?: string
+          service?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_services_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          category: string | null
+          company_name: string | null
+          created_at: string
+          email: string | null
+          id: string
+          location: string | null
+          status: string | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          category?: string | null
+          company_name?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          location?: string | null
+          status?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          category?: string | null
+          company_name?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          location?: string | null
+          status?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           id: string
@@ -57,6 +154,48 @@ export type Database = {
           name?: string | null
           phone_number?: string | null
           role?: string | null
+        }
+        Relationships: []
+      }
+      rental_leads: {
+        Row: {
+          address: string
+          created_at: string
+          id: string
+          is_saturated: boolean
+          name: string
+          phone: string
+          rating: number
+          status: string
+          type: string
+          updated_at: string
+          website: string
+        }
+        Insert: {
+          address: string
+          created_at?: string
+          id?: string
+          is_saturated?: boolean
+          name: string
+          phone: string
+          rating: number
+          status?: string
+          type: string
+          updated_at?: string
+          website: string
+        }
+        Update: {
+          address?: string
+          created_at?: string
+          id?: string
+          is_saturated?: boolean
+          name?: string
+          phone?: string
+          rating?: number
+          status?: string
+          type?: string
+          updated_at?: string
+          website?: string
         }
         Relationships: []
       }

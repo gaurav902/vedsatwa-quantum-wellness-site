@@ -8,18 +8,24 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ChakraPoint {
   name: string;
   title: string;
   description: string;
   color: string;
-  top: string;
-  left: string;
+  position: {
+    top?: string;
+    left?: string;
+    right?: string;
+    bottom?: string;
+  };
   mantra: string;
   element: string;
   qualities: string[];
   benefits: string[];
+  sanskritName: string;
 }
 
 export function ChakraVisualization() {
@@ -28,11 +34,11 @@ export function ChakraVisualization() {
   const chakraPoints: ChakraPoint[] = [
     {
       name: "crown",
+      sanskritName: "Sahasrara",
       title: "Crown Chakra (Sahasrara)",
       description: "The gateway to higher consciousness and spiritual connection",
       color: "#9932CC",
-      top: "15%",
-      left: "50%",
+      position: { left: "15%", top: "15%" },
       mantra: "OM",
       element: "Divine Consciousness",
       qualities: ["Enlightenment", "Universal consciousness", "Divine connection"],
@@ -45,11 +51,11 @@ export function ChakraVisualization() {
     },
     {
       name: "third",
+      sanskritName: "Ajna",
       title: "Third Eye Chakra (Ajna)",
       description: "The center of intuition and inner vision",
       color: "#0000FF",
-      top: "25%",
-      left: "50%",
+      position: { right: "15%", top: "15%" },
       mantra: "OM",
       element: "Light",
       qualities: ["Intuition", "Wisdom", "Vision"],
@@ -62,11 +68,11 @@ export function ChakraVisualization() {
     },
     {
       name: "throat",
+      sanskritName: "Vishuddha",
       title: "Throat Chakra (Vishuddha)",
       description: "Expression and communication center",
       color: "#00BFFF",
-      top: "32%",
-      left: "65%",
+      position: { left: "15%", top: "35%" },
       mantra: "HAM",
       element: "Ether",
       qualities: ["Communication", "Expression", "Truth"],
@@ -79,11 +85,11 @@ export function ChakraVisualization() {
     },
     {
       name: "heart",
+      sanskritName: "Anahata",
       title: "Heart Chakra (Anahata)",
       description: "Center of love and compassion",
       color: "#00FF00",
-      top: "44%",
-      left: "70%",
+      position: { right: "15%", top: "35%" },
       mantra: "YAM",
       element: "Air",
       qualities: ["Love", "Compassion", "Balance"],
@@ -96,11 +102,11 @@ export function ChakraVisualization() {
     },
     {
       name: "solar",
+      sanskritName: "Manipura",
       title: "Solar Plexus Chakra (Manipura)",
       description: "Power and self-confidence center",
       color: "#FFFF00",
-      top: "56%",
-      left: "65%",
+      position: { left: "15%", top: "55%" },
       mantra: "RAM",
       element: "Fire",
       qualities: ["Power", "Will", "Confidence"],
@@ -113,11 +119,11 @@ export function ChakraVisualization() {
     },
     {
       name: "sacral",
+      sanskritName: "Svadhishthana",
       title: "Sacral Chakra (Svadhishthana)",
       description: "Creativity and emotional center",
       color: "#FF8C00",
-      top: "68%",
-      left: "60%",
+      position: { right: "15%", top: "55%" },
       mantra: "VAM",
       element: "Water",
       qualities: ["Creativity", "Emotion", "Pleasure"],
@@ -130,11 +136,11 @@ export function ChakraVisualization() {
     },
     {
       name: "root",
+      sanskritName: "Muladhara",
       title: "Root Chakra (Muladhara)",
       description: "Foundation and grounding center",
       color: "#FF0000",
-      top: "80%",
-      left: "50%",
+      position: { left: "45%", bottom: "10%" },
       mantra: "LAM",
       element: "Earth",
       qualities: ["Stability", "Security", "Grounding"],
@@ -148,38 +154,70 @@ export function ChakraVisualization() {
   ];
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto h-[800px]">
-      {/* Meditation Figure */}
-      <div className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-90"
-        style={{ backgroundImage: "url('/lovable-uploads/cff3fc06-4b57-47c0-bcf4-c462b8ae1b3e.png')" }}
-      />
+    <div className="flex flex-col items-center">
+      <div className="relative w-full max-w-4xl mx-auto h-[700px] mb-8">
+        {/* Meditation Figure */}
+        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/lovable-uploads/cff3fc06-4b57-47c0-bcf4-c462b8ae1b3e.png')" }}
+        />
 
-      {/* Chakra Points */}
-      {chakraPoints.map((chakra) => (
-        <motion.button
-          key={chakra.name}
-          className="absolute cursor-pointer z-20"
-          style={{ 
-            top: chakra.top,
-            left: chakra.left,
-            transform: 'translate(-50%, -50%)'
-          }}
-          onClick={() => setSelectedChakra(chakra)}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <ChakraIcon
-            chakraName={chakra.name}
-            size={48}
-            interactive={true}
-            pulseIntensity={1.2}
-          />
-        </motion.button>
-      ))}
+        {/* Chakra Points */}
+        {chakraPoints.map((chakra) => (
+          <motion.button
+            key={chakra.name}
+            className="absolute cursor-pointer z-20"
+            style={{ 
+              top: chakra.position.top,
+              left: chakra.position.left,
+              right: chakra.position.right,
+              bottom: chakra.position.bottom,
+              transform: 'translate(-50%, -50%)'
+            }}
+            onClick={() => setSelectedChakra(chakra)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="flex flex-col items-center">
+              <ChakraIcon
+                chakraName={chakra.name}
+                size={48}
+                interactive={true}
+                pulseIntensity={1.2}
+              />
+              <span className="text-white text-xs mt-1 bg-black/30 px-2 py-1 rounded-full backdrop-blur-sm">
+                {chakra.sanskritName}
+              </span>
+            </div>
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Chakra Description Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="mb-10 max-w-4xl mx-auto"
+      >
+        <Card className="bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg text-white">
+          <CardContent className="p-6">
+            <h3 className="text-xl font-medium mb-3">Understanding the Seven Chakras</h3>
+            <p className="mb-4">
+              In ancient Vedic tradition, chakras are the energy centers within our bodies that influence our physical, 
+              mental, and spiritual well-being. When these energy centers are balanced, we experience optimal health and vitality.
+            </p>
+            <p>
+              Click on each chakra symbol to learn more about its unique properties and how it affects your life journey. 
+              Join our upcoming workshop to experience guided chakra healing and balancing techniques.
+            </p>
+          </CardContent>
+        </Card>
+      </motion.div>
 
       {/* Chakra Dialog */}
       <Dialog open={!!selectedChakra} onOpenChange={() => setSelectedChakra(null)}>
-        <DialogContent className="max-w-2xl glass">
+        <DialogContent className="max-w-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg text-white">
           <DialogHeader>
             <DialogTitle 
               className="text-2xl font-bold"
@@ -190,7 +228,7 @@ export function ChakraVisualization() {
           </DialogHeader>
           <div className="grid gap-6 py-4">
             <div className="flex flex-col gap-4">
-              <p className="text-lg text-foreground/90">{selectedChakra?.description}</p>
+              <p className="text-lg text-white/90">{selectedChakra?.description}</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
