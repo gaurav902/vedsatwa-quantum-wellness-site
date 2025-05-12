@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HeroSection } from "@/components/sections/hero-section";
@@ -22,15 +23,16 @@ const Index = () => {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-background">
-        <div className="flex flex-col items-center">
+      <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-ayurveda-forest/90 to-black">
+        <div className="flex flex-col items-center glass px-8 py-10 rounded-2xl border border-white/20">
           <div className="relative">
             <div className="w-16 h-16 border-4 border-[#f6d4d2]/30 border-t-[#f6d4d2] rounded-full animate-spin"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-8 h-8 bg-ayurveda-forest/10 rounded-full"></div>
+              <div className="w-8 h-8 bg-[#f6d4d2]/10 rounded-full"></div>
             </div>
           </div>
-          <p className="mt-4 text-ayurveda-forest font-medium">Loading Vedsatwa Experience...</p>
+          <p className="mt-6 text-[#f6d4d2] font-medium">Loading Vedsatwa Experience...</p>
+          <p className="mt-2 text-white/70 text-sm">Chakra Healing Workshop • 30 MAY - 1 JUNE 2025</p>
         </div>
       </div>
     );

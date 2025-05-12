@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { MapPin } from "lucide-react";
 import { BookingForm } from "@/components/ui/booking-form";
@@ -50,7 +51,7 @@ export function LocationSection() {
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <span className="font-medium min-w-[80px]">Dates:</span>
-                  <span>May 23-25, 2025</span>
+                  <span>May 30 - June 1, 2025</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="font-medium min-w-[80px]">Duration:</span>

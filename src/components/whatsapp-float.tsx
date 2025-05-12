@@ -18,9 +18,14 @@ export function WhatsappFloat() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // WhatsApp redirect message
+  const whatsappMessage = encodeURIComponent(
+    "Hello Vedsatwa International! I'm interested in the Chakra Healing Workshop (30 May - 1 June 2025) and would like to learn more. Could you please provide more details about registration and accommodation?"
+  );
+
   return (
     <a
-      href="https://wa.me/919351994312"
+      href={`https://wa.me/919351994312?text=${whatsappMessage}`}
       target="_blank"
       rel="noopener noreferrer"
       className={`fixed bottom-6 right-6 z-40 bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 flex items-center group hover:pr-6 ${
