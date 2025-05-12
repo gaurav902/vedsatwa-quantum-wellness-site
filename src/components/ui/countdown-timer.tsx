@@ -46,12 +46,12 @@ export function CountdownTimer({ targetDate, eventTitle }: CountdownTimerProps) 
   return (
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="bg-gray-900/95 border-none max-w-[90vw] sm:max-w-md w-full mx-2 sm:mx-0 p-4 sm:p-6 rounded-xl">
+        <DialogContent className="bg-gradient-to-br from-ayurveda-forest/90 to-black border-none max-w-[90vw] sm:max-w-md w-full mx-2 sm:mx-0 p-4 sm:p-6 rounded-xl">
           <DialogTitle className="sr-only">{eventTitle} Countdown</DialogTitle>
           <div className="text-center space-y-6">
-            <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">LIMITED SEATS AVAILABLE</h2>
-            <p className="text-gray-300 text-sm sm:text-base">
-              Reserve your spot before registration closes. Only a few seats remain.
+            <h2 className="text-xl sm:text-2xl font-semibold text-[#f6d4d2] mb-2">LIMITED SEATS AVAILABLE</h2>
+            <p className="text-white/70 text-sm sm:text-base">
+              Reserve your spot before registration closes for the Chakra Healing Workshop (30 MAY - 1 JUNE 2025).
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 py-4">
