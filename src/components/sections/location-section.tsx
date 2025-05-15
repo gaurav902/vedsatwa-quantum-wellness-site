@@ -21,7 +21,7 @@ export function LocationSection() {
             <div className="glass p-1 rounded-2xl overflow-hidden">
               <div className="relative h-[400px]">
                 <img 
-                  src="https://sdmntprwestus.oaiusercontent.com/files/00000000-9f80-6230-8814-e35d8d6fa495/raw?se=2025-05-15T08%3A19%3A32Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=ea1de0bc-0467-43d6-873a-9a5cf0a9f835&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-14T22%3A18%3A21Z&ske=2025-05-15T22%3A18%3A21Z&sks=b&skv=2024-08-04&sig=3ijo3OeuczENDYfVouegjN6H3Q0P5tCpj/2PSxe74ps%3D" 
+                  src="/lovable-uploads/jim.png" 
                   alt="Jim Corbett National Park" 
                   className="w-full h-full object-cover"
                 />

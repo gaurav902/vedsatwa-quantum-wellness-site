@@ -30,7 +30,7 @@ export function DnaSection() {
             <div className="relative">
               <div className="absolute inset-0 bg-ayurveda-saffron/20 rounded-2xl transform rotate-3"></div>
               <img 
-                src="https://sdmntprwestus.oaiusercontent.com/files/00000000-22d0-6230-9724-7c9ba58df5f7/raw?se=2025-05-15T07%3A58%3A13Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=ea1de0bc-0467-43d6-873a-9a5cf0a9f835&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-15T06%3A31%3A55Z&ske=2025-05-16T06%3A31%3A55Z&sks=b&skv=2024-08-04&sig=b6l22phqgl%2BJ2EOZyFuEPLDWFKyOt3HJXygGNBN8A4s%3D"
+                src="/lovable-uploads/DNA.png"
                 alt="DNA Representation" 
                 className="rounded-2xl relative z-10 object-cover w-full h-[400px]"
               />

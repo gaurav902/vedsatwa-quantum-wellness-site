@@ -71,7 +71,7 @@ export function ManifestationSection() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <img 
-                  src="https://sdmntprwestus2.oaiusercontent.com/files/00000000-b074-61f8-83e3-bd7ce213f1cb/raw?se=2025-05-15T08%3A06%3A18Z&sp=r&sv=2024-08-04&sr=b&scid=00000000-0000-0000-0000-000000000000&skoid=ea1de0bc-0467-43d6-873a-9a5cf0a9f835&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-14T22%3A16%3A56Z&ske=2025-05-15T22%3A16%3A56Z&sks=b&skv=2024-08-04&sig=eaZHAZUukQAO/Xx0yhhoLUz22n9SpvBQ02os7U5Uw9E%3D"
+                  src="/lovable-uploads/meni.png"
                   alt="Manifestation Concept" 
                   className="rounded-2xl object-cover w-full h-[400px] shadow-xl"
                 />
