@@ -121,9 +121,9 @@ export function HeroSection() {
               ></motion.div>
               <div className="glass p-1 rounded-2xl relative">
                 <img
-                  src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05"
+                  src="/lovable-uploads/druvsingh.png"
                   alt="Dr. UV Singh"
-                  className="rounded-xl h-80 w-full object-cover"
+                  className="rounded-xl h-70 w-full object-cover"
                 />
                 <motion.div 
                   className="absolute bottom-4 left-4 right-4 glass p-4 rounded-lg"
